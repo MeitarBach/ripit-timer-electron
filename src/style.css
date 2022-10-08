@@ -1,0 +1,141 @@
+button {
+    width: 4em;
+    background: transparent;
+    color: rgb(63,152,199);
+    border: 0;
+}
+
+button:hover {
+    cursor: pointer;
+    color: #41b8ff;
+}
+
+.timer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-grow: 9;
+    border: 3px solid;
+    border-radius: 25px;
+    margin: 10px;
+}
+
+.timer__header {
+    font-size: xx-large;
+}
+
+.timer h1 {
+    margin-bottom: 0.2em;
+}
+
+.timer h2, h4 {
+    margin: 0;
+}
+
+.timer button {
+    margin: 20px;
+    width: 6em;
+}
+
+.timer__segments {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer__segments button {
+    margin: 12px;
+    width: 4em;
+}
+
+.pre-countdown-dialog {
+    border-radius: 10px;
+    background: #282c34;
+    color: rgb(63,152,199);
+    font-size: xxx-large;
+}
+
+.menu {
+    max-height: 20em;
+    overflow: scroll;
+    align-self: center;
+}
+
+.menu__hidden {
+    display: none;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu-item__workout {
+    width: 80%;
+    margin: 0.2em;
+    padding: 0.3em;
+    border: 1px solid grey;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-item__workout button {
+    width: 2.3em;
+}
+
+.menu-item__workout:hover {
+    cursor: pointer;
+    background-color: #282c20;
+}
+
+.add-workout-dialog {
+    background-color: #282c34;
+    color: white;
+}
+
+.add-workout-dialog__header {
+    text-align: right;
+}
+
+.add-workout-dialog__form {
+    text-align: left;
+}
+
+.add-workout-dialog__form__segments {
+    padding: 10px;
+    margin: 10px;
+}
+
+.add-workout-dialog__footer {
+    margin: 10px;
+}
+
+.form-input {
+    margin: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-input label {
+    margin-right: 30px;
+}
+
+.add-workout-dialog button {
+    width: 3em;
+}
+
+.form-input button {
+    width: 2em;
+}
+
+.add-workout-dialog__footer button {
+    width: 4em;
+}
+
+.CircularProgressbar {
+    height: 25em;
+    margin: 20px;
+}
