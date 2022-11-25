@@ -13,7 +13,7 @@ export class TrainingConfiguration {
 const DefaultConfigurations = [
     {
         id: uuidv4(),
-        title: "Tabata",
+        title: "TABATA",
         rounds: 100,
         segments: [20, 10],
         isDefault: true

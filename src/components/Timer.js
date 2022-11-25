@@ -88,18 +88,18 @@ function Timer({ currentWorkoutConfig }) {
     return (
         <div className="timer">
             <div className="timer__header">
+                <img src={require('../assests/images/secondary_logo.png')}/>
                 <h1>{currentWorkoutConfig.title}</h1>
                 <div className="timer__progress">
-                    <h2>R {currentRoundNumber}/{currentWorkoutConfig.rounds}</h2>
+                    <h1>R {currentRoundNumber}/{currentWorkoutConfig.rounds}</h1>
                     <div className="timer__segments">
                         <TimerButton btnType={ButtonTypes.BACKWARD} onClick={decrementSegment} disabled={decrementSegmentEnabled}/>
-                        <h4>S {currentSegmentNumber}/{currentWorkoutConfig.segments?.length}</h4>
+                        <h1>S {currentSegmentNumber}/{currentWorkoutConfig.segments?.length}</h1>
                         <TimerButton btnType={ButtonTypes.FORWARD} onClick={incrementSegment} disabled={incrementSegmentEnabled}/>
                     </div>
                 </div>
                 {!timer.timerRunning ?
                     <TimerButton btnType={ButtonTypes.PLAY} onClick={isPaused ? resumeTimer : startPreCountdown}/> :
-                    // <button onClick={isPaused ? resumeTimer : startPreCountdown}>Play</button> :
                     <>
                         <TimerButton btnType={ButtonTypes.PAUSE} onClick={pauseTimer}/>
                         <TimerButton btnType={ButtonTypes.STOP} onClick={stopTimer}/>
@@ -112,6 +112,7 @@ function Timer({ currentWorkoutConfig }) {
                            stopPreCountdown={stopPreCountdown}
                            timer={timer} />
             </div>
+            {/*<img src={require('../assests/images/secondary_icon.png')}/>*/}
         </div>
     );
 }

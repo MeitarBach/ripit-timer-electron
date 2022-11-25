@@ -17,14 +17,22 @@ function Stopwatch({ timeToCountSeconds, timer, preCountdownRunning, stopPreCoun
 
     return (
         <div className="stopwatch">
-            <PreCountdownDialog preCountdownRunning={preCountdownRunning} startTimer={timer.startTimer} stopPreCountdown={stopPreCountdown}/>
-            <CircularProgressbar
-                value={percentage}
-                text={`${showMinutes}:${showSeconds}`}
-                strokeWidth={5}
-                styles={buildStyles(
-                    { textSize: '25px' }
-                )}/>
+            { preCountdownRunning && <PreCountdownDialog preCountdownRunning={preCountdownRunning} startTimer={timer.startTimer} stopPreCountdown={stopPreCountdown}/>}
+            { !preCountdownRunning &&
+                <CircularProgressbar
+                    value={percentage}
+                    text={`${showMinutes}:${showSeconds}`}
+                    strokeWidth={4}
+                    styles={
+                        buildStyles(
+                        {
+                            textSize: '32px',
+                            textColor: '#D8C183',
+                            pathColor: '#D8C183',
+                            trailColor: '#E5E3D7'
+                        })
+                    }/>
+            }
         </div>
     );
 }

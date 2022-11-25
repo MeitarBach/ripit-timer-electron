@@ -1,13 +1,25 @@
+@font-face {
+    font-family: SecularOne;
+    src: url(./fonts/SecularOne-Regular.ttf);
+}
+
+:root {
+    --background-color: #171A48 ;
+    --text-color: #D8C183;
+    --hover-color: #607EA3;
+    --button-color: #E5E3D7;
+}
+
 button {
     width: 4em;
     background: transparent;
-    color: rgb(63,152,199);
+    color: var(--button-color);
     border: 0;
 }
 
 button:hover {
     cursor: pointer;
-    color: #41b8ff;
+    color: var(--hover-color);
 }
 
 .timer {
@@ -15,17 +27,19 @@ button:hover {
     justify-content: space-evenly;
     align-items: center;
     flex-grow: 9;
-    border: 3px solid;
+    border: 6px solid var(--button-color);
     border-radius: 25px;
     margin: 10px;
 }
 
-.timer__header {
-    font-size: xx-large;
+.timer img {
+    width: 2em;
+    align-self: end;
 }
 
 .timer h1 {
-    margin-bottom: 0.2em;
+    font-size: 2.25em;
+    margin: 0;
 }
 
 .timer h2, h4 {
@@ -35,6 +49,16 @@ button:hover {
 .timer button {
     margin: 20px;
     width: 6em;
+}
+
+.timer__header {
+    font-size: xx-large;
+    /*margin-left: 15px;*/
+}
+
+.timer__header img {
+    margin: 0 0.5em 0.5em 0;
+    width:5em;
 }
 
 .timer__segments {
@@ -48,9 +72,14 @@ button:hover {
     width: 4em;
 }
 
+.stopwatch {
+    display: flex;
+    align-items: center;
+}
+
 .pre-countdown-dialog {
     border-radius: 10px;
-    background: #282c34;
+    background: var(--background-color);
     color: rgb(63,152,199);
     font-size: xxx-large;
 }
@@ -88,12 +117,12 @@ button:hover {
 
 .menu-item__workout:hover {
     cursor: pointer;
-    background-color: #282c20;
+    background-color: var(--hover-color);
 }
 
 .add-workout-dialog {
-    background-color: #282c34;
-    color: white;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .add-workout-dialog__header {
