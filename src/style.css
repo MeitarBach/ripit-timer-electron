@@ -90,6 +90,10 @@ button:hover {
     align-self: center;
 }
 
+.menu::-webkit-scrollbar {
+    display: none;
+}
+  
 .menu__hidden {
     display: none;
 }
