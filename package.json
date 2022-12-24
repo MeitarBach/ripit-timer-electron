@@ -1,5 +1,5 @@
 {
-  "name": "ripit-timer-electron",
+  "name": "ripit-timer",
   "version": "0.1.0",
   "description": "workout timer",
   "author": "String",
@@ -31,13 +31,19 @@
     "preelectron-pack": "yarn build"
   },
   "build": {
-    "appId": "com.ripit.ripit-timer-electron",
+    "appId": "com.ripit.ripit-timer",
     "files": [
       "build/**/*",
       "node_modules/**/*"
     ],
     "directories": {
       "buildResources": "assets"
+    },
+    "mac": {
+      "icon": "build/icon.png"
+    },
+    "win": {
+      "icon": "build/icon.png"
     }
   },
   "eslintConfig": {

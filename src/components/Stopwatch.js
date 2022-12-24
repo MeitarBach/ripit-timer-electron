@@ -3,7 +3,7 @@ import PreCountdownDialog from "./PreCountdownDialog";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-function Stopwatch({ timeToCountSeconds, timer, preCountdownRunning, stopPreCountdown }) {
+function Stopwatch({ timeToCountSeconds, timer, preCountdownRunning, stopPreCountdown, showDone }) {
     const originalMinutes = Math.floor(timeToCountSeconds / 60);
     const originalSeconds = timeToCountSeconds % 60;
 
@@ -18,7 +18,7 @@ function Stopwatch({ timeToCountSeconds, timer, preCountdownRunning, stopPreCoun
     return (
         <div className="stopwatch">
             { preCountdownRunning && <PreCountdownDialog preCountdownRunning={preCountdownRunning} startTimer={timer.startTimer} stopPreCountdown={stopPreCountdown}/>}
-            { !preCountdownRunning &&
+            { !preCountdownRunning && !showDone &&
                 <CircularProgressbar
                     value={percentage}
                     text={`${showMinutes}:${showSeconds}`}
@@ -31,6 +31,21 @@ function Stopwatch({ timeToCountSeconds, timer, preCountdownRunning, stopPreCoun
                             pathColor: '#D8C183',
                             trailColor: '#E5E3D7'
                         })
+                    }/>
+            }
+            { !preCountdownRunning && showDone &&
+                <CircularProgressbar
+                    value={100}
+                    text={"Done!"}
+                    strokeWidth={5}
+                    styles={
+                        buildStyles(
+                            {
+                                textSize: '30px',
+                                textColor: '#11ff00',
+                                pathColor: '#11ff00',
+                                trailColor: '#607EA3'
+                            })
                     }/>
             }
         </div>

@@ -51,7 +51,7 @@ function WorkoutMenuItem({ workoutConfig, selectedId, selectWorkout, workoutConf
                 {!workoutConfig.isDefault && <TimerButton btnType={ButtonTypes.DELETE} onClick={() => handleDeleteClick(workoutConfig.id)}>x</TimerButton>}
             </div>
         </div>
-);
+    );
 }
 
 export default Menu;

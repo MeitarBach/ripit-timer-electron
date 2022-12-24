@@ -1,10 +1,29 @@
 import { useEffect, useState } from "react";
-import Beep from '../sounds/beep.mp3';
+import Beep from '../assests/sounds/beeep.mp3';
+import Success from '../assests/sounds/success.mp3';
 import { Howl } from "howler";
 
 const noop = () => {};
 
-const useTimer = ({ countDownSeconds, handleCountdownFinish =  noop}) => {
+const beep = new Howl(({
+    src: Beep,
+    sprite: {
+        full: [0, 4000],
+        short: [1000, 4000],
+        end: [3000, 4000],
+    },
+    preload: true
+}));
+
+const success = new Howl(({
+    src: Success,
+    sprite: {
+        full: [0, 4000]
+    },
+    preload: true
+}));
+
+const useTimer = ({ isPreCountdown, countDownSeconds, handleCountdownFinish =  noop}) => {
     const [timerRunning, setTimerRunning] = useState(false);
     const [remainingSeconds, setRemainingSeconds] = useState(countDownSeconds);
 
@@ -20,19 +39,10 @@ const useTimer = ({ countDownSeconds, handleCountdownFinish =  noop}) => {
         setRemainingSeconds(countDownSeconds);
     }
 
-    const beep = new Howl(({
-        src: Beep,
-        sprite: {
-            short: [0, 200],
-            long: [0, 1000]
-        },
-        preload: true
-    }));
-
-    if (timerRunning && remainingSeconds >= 1 && remainingSeconds <= 3) {
-        beep.play('short');
-    } else if (timerRunning && remainingSeconds === 0) {
-        beep.play('long');
+    if (timerRunning && isPreCountdown && remainingSeconds === 3) {
+        beep.play('full', true);
+    } else if (timerRunning && !isPreCountdown && remainingSeconds === 2) {
+        beep.play('short', true);
     }
 
     useEffect(() => {
@@ -66,4 +76,4 @@ const useTimer = ({ countDownSeconds, handleCountdownFinish =  noop}) => {
     return {minutes, seconds, remainingSeconds, timerRunning, startTimer, stopTimer, resetTimer};
 };
 
-export { useTimer };
+export { useTimer, beep, success };

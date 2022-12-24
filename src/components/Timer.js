@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Stopwatch from "./Stopwatch";
-import { useTimer } from "../hooks/useTimer";
+import {useTimer, beep, success} from "../hooks/useTimer";
 import TimerButton, { ButtonTypes } from "./common/TimerButton";
 
 function Timer({ currentWorkoutConfig }) {
@@ -9,7 +9,8 @@ function Timer({ currentWorkoutConfig }) {
     const [currentRoundNumber, setCurrentRoundNumber] = useState(1);
     const [currentSegmentNumber, setCurrentSegmentNumber] = useState(1);
     const [timeToCountSeconds, setTimeToCountSeconds] = useState(0);
-    const timer = useTimer({ countDownSeconds: timeToCountSeconds, handleCountdownFinish: handleSegmentFinished });
+    const [showDone, setShowDone] = useState(false);
+    const timer = useTimer({ isPreCountdown: false, countDownSeconds: timeToCountSeconds, handleCountdownFinish: handleSegmentFinished });
     const decrementSegmentEnabled = currentSegmentNumber === 1;
     const incrementSegmentEnabled = currentSegmentNumber === currentWorkoutConfig?.segments?.length;
 
@@ -32,6 +33,8 @@ function Timer({ currentWorkoutConfig }) {
     }
 
     const resetTimer = () => {
+        timer.stopTimer();
+        timer.resetTimer();
         setTimeToCountSeconds(currentWorkoutConfig.segments ? currentWorkoutConfig.segments[0] : 0);
         setCurrentSegmentNumber(1);
         setCurrentRoundNumber(1);
@@ -59,11 +62,16 @@ function Timer({ currentWorkoutConfig }) {
         setIsPaused(false);
     }
 
-    const stopTimer = () => {
+    const stopTimer = async () => {
         resetTimer();
-        timer.stopTimer();
-        timer.resetTimer();
+        beep.stop();
+        success.play('full', true);
+        setShowDone(true);
+        await waitThreeSeconds();
+        setShowDone(false);
     }
+
+    const waitThreeSeconds = () => new Promise(res => setTimeout(res, 3000));
 
     useEffect(() => {
         setTimeToCountSeconds(currentWorkoutConfig.segments ? currentWorkoutConfig.segments[0] : 0);
@@ -79,8 +87,7 @@ function Timer({ currentWorkoutConfig }) {
 
     useEffect(() => {
         if (currentRoundNumber > currentWorkoutConfig.rounds) {
-            timer.stopTimer();
-            resetTimer();
+            stopTimer();
         }
     }, [currentRoundNumber, currentWorkoutConfig.rounds]);
 
@@ -110,7 +117,8 @@ function Timer({ currentWorkoutConfig }) {
                 <Stopwatch timeToCountSeconds={timeToCountSeconds}
                            preCountdownRunning={preCountdownRunning}
                            stopPreCountdown={stopPreCountdown}
-                           timer={timer} />
+                           timer={timer}
+                           showDone={showDone}/>
             </div>
             {/*<img src={require('../assests/images/secondary_icon.png')}/>*/}
         </div>

@@ -3,7 +3,7 @@ import {useTimer} from "../hooks/useTimer";
 import {buildStyles, CircularProgressbar} from "react-circular-progressbar";
 
 function PreCountdownDialog({ preCountdownRunning, startTimer, stopPreCountdown }) {
-    const preCountdownTimer = useTimer({countDownSeconds : 3, handleCountdownFinish: handlePreCountdownFinished});
+    const preCountdownTimer = useTimer({isPreCountdown: true, countDownSeconds : 3, handleCountdownFinish: handlePreCountdownFinished});
 
     useEffect(() => {
         if (preCountdownRunning) {
@@ -21,9 +21,6 @@ function PreCountdownDialog({ preCountdownRunning, startTimer, stopPreCountdown 
     const textToDisplay = preCountdownTimer.seconds > 0 ? preCountdownTimer.seconds : 'GO!';
 
     return (
-        // <dialog className="pre-countdown-dialog" open={preCountdownTimer.timerRunning}>
-        //     <span>{preCountdownTimer.seconds}</span>
-        // </dialog>
         <CircularProgressbar
             text={textToDisplay}
             strokeWidth={5}
